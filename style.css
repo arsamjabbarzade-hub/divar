@@ -1,0 +1,771 @@
+@font-face {
+    font-family: IRANSans;
+    src: local("IRANSans"), local("Tahoma");
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: IRANSans, Tahoma, sans-serif;
+
+    --bg: #f7f7f7;
+    --surface: #fff;
+    --text: #242424;
+    --muted: #858585;
+    --line: #e8e8e8;
+    --red: #a62626;
+    --soft: #f5eeee;
+
+    transition: .2s;
+}
+
+body.dark {
+    --bg: #151515;
+    --surface: #222;
+    --text: #f1f1f1;
+    --muted: #aaa;
+    --line: #383838;
+    --soft: #382727;
+}
+
+/* نوار بالایی */
+
+.topbar {
+    height: 70px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 0 max(calc((100vw - 1240px) / 2), 22px);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--red);
+    font-size: 23px;
+    text-decoration: none;
+}
+
+.brand img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+.city,
+.icon-btn,
+.login-btn,
+.post-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 10px 13px;
+    font: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.city span {
+    color: var(--muted);
+    margin-right: 12px;
+}
+
+/* جستجو */
+
+.searchbox {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0 12px;
+    flex: 1;
+    min-width: 120px;
+}
+
+.searchbox span {
+    font-size: 25px;
+    color: var(--muted);
+}
+
+.searchbox input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    width: 100%;
+    font: inherit;
+}
+
+.searchbox button {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.mobile-search {
+    display: none;
+}
+
+/* دکمه‌ها */
+
+.post-btn,
+.apply-btn {
+    background: var(--red);
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 17px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.post-btn:hover,
+.apply-btn:hover {
+    background: #861d1d;
+}
+
+/* ساختار اصلی */
+
+.layout {
+    max-width: 1240px;
+    margin: 28px auto;
+    padding: 0 22px;
+    display: grid;
+    grid-template-columns: 245px minmax(0, 1fr);
+    gap: 30px;
+}
+
+/* نوار کناری */
+
+.sidebar {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    height: max-content;
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 110px);
+    overflow: auto;
+    scrollbar-width: thin;
+}
+
+.sidebar h3 {
+    font-size: 15px;
+    margin: 0 0 14px;
+}
+
+.cat {
+    display: block;
+    width: 100%;
+    text-align: right;
+    padding: 10px;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.cat:hover,
+.cat.active {
+    background: var(--soft);
+    color: var(--red);
+}
+
+.cat small {
+    float: left;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.side-line {
+    height: 1px;
+    background: var(--line);
+    margin: 17px 0;
+}
+
+/* فیلترها */
+
+.filter-label {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin: 12px 0;
+}
+
+.filter-label input {
+    display: block;
+    width: 100%;
+    margin-top: 7px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+}
+
+.checkline {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 15px 0;
+}
+
+.apply-btn,
+.reset-btn {
+    width: 100%;
+    margin-top: 8px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.reset-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--muted);
+    padding: 9px;
+    border-radius: 8px;
+}
+
+/* بخش آگهی‌ها */
+
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.heading h1 {
+    font-size: 21px;
+    margin: 0 0 6px;
+}
+
+.heading p {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+}
+
+.heading select {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--line);
+    padding: 10px;
+    border-radius: 8px;
+    font: inherit;
+}
+
+/* دسته‌بندی‌های سریع */
+
+.chips {
+    display: flex;
+    gap: 8px;
+    overflow: auto;
+    margin-bottom: 18px;
+    padding-bottom: 3px;
+}
+
+.chip {
+    white-space: nowrap;
+    max-width: 220px;
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    background: var(--surface);
+    color: var(--muted);
+    padding: 8px 16px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.chip.selected {
+    color: var(--red);
+    border-color: #d8aaaa;
+    background: var(--soft);
+}
+
+/* کارت‌های آگهی */
+
+.listing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.ad-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 142px;
+    gap: 13px;
+    padding: 13px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+    min-height: 154px;
+    min-width: 0;
+    transition: .18s;
+}
+
+.ad-card:hover {
+    border-color: #c99;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px #0000000a;
+}
+
+.ad-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.ad-info h2 {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 2px 0 12px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.ad-price {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: auto;
+}
+
+.ad-meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+.ad-image {
+    width: 100%;
+    height: 126px;
+    object-fit: cover;
+    border-radius: 7px;
+    background: var(--bg);
+}
+
+.ad-image.placeholder {
+    display: grid;
+    place-items: center;
+    font-size: 36px;
+    color: var(--muted);
+}
+
+.ad-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.fav {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.fav.on {
+    color: #d22;
+}
+
+.tag {
+    font-size: 10px;
+    color: var(--red);
+    background: var(--soft);
+    padding: 4px 7px;
+    border-radius: 5px;
+}
+
+/* صفحه‌بندی */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 24px 8px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.pagination button {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text);
+    padding: 9px 18px;
+    border-radius: 8px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+/* وضعیت خالی */
+
+.empty {
+    text-align: center;
+    padding: 70px 10px;
+    color: var(--muted);
+}
+
+.empty > div {
+    font-size: 42px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* منوی پایین موبایل */
+
+.bottom-nav {
+    display: none;
+}
+
+/* پنجره‌های بازشو */
+
+.modal-root {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    padding: 15px;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: #0009;
+}
+
+.modal {
+    position: relative;
+    background: var(--surface);
+    color: var(--text);
+    width: min(520px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    border-radius: 13px;
+    padding: 26px;
+    box-shadow: 0 20px 70px #0004;
+}
+
+.modal-close {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.modal h2 {
+    font-size: 19px;
+    margin: 0 0 18px;
+}
+
+/* فرم‌ها */
+
+.form-field {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 13px 0;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 7px;
+    padding: 11px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+}
+
+.form-field textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* جزئیات آگهی */
+
+.detail-image {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 9px;
+    background: var(--bg);
+}
+
+.detail-price {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.detail-meta {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* پیام‌های اطلاع‌رسانی */
+
+.toast {
+    position: fixed;
+    bottom: 85px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background: #222;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .25s;
+    z-index: 40;
+    font-size: 13px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* چت و پروفایل */
+
+.chat-row,
+.profile-row {
+    padding: 15px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.chat-row p,
+.profile-row p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* تبلت و صفحه‌های متوسط */
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 200px minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .listing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        gap: 9px;
+    }
+
+    .login-btn {
+        display: none;
+    }
+}
+
+/* موبایل */
+
+@media (max-width: 650px) {
+    .topbar {
+        height: 58px;
+        padding: 0 13px;
+        gap: 9px;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .brand img {
+        width: 29px;
+    }
+
+    .city {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .topbar > .searchbox {
+        display: none;
+    }
+
+    .icon-btn {
+        margin-right: auto;
+        padding: 8px;
+    }
+
+    .post-btn {
+        display: none;
+    }
+
+    .mobile-search {
+        display: block;
+        padding: 10px 13px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+    }
+
+    .layout {
+        display: block;
+        margin: 17px auto;
+        padding: 0 12px 76px;
+    }
+
+    .sidebar {
+        display: none;
+        max-height: none;
+    }
+
+    .heading {
+        gap: 8px;
+    }
+
+    .heading h1 {
+        font-size: 17px;
+        max-width: 70vw;
+    }
+
+    .heading select {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .listing-grid {
+        gap: 10px;
+    }
+
+    .ad-card {
+        grid-template-columns: minmax(0, 1fr) 105px;
+        padding: 10px;
+        min-height: 137px;
+    }
+
+    .ad-image {
+        height: 105px;
+    }
+
+    .ad-info h2 {
+        font-size: 13px;
+        margin-bottom: 7px;
+    }
+
+    .ad-price {
+        font-size: 12px;
+    }
+
+    .chips {
+        margin-inline: -2px;
+    }
+
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: 62px;
+        background: var(--surface);
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-around;
+        z-index: 10;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .nav-item {
+        border: 0;
+        background: none;
+        color: var(--muted);
+        font: inherit;
+        font-size: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        flex: 1;
+        cursor: pointer;
+    }
+
+    .nav-item span {
+        font-size: 22px;
+    }
+
+    .nav-item.active {
+        color: var(--red);
+    }
+
+    .nav-item.post-nav span {
+        font-size: 24px;
+        background: var(--red);
+        color: white;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+    }
+
+    .toast {
+        bottom: 75px;
+    }
+
+    .modal {
+        padding: 23px 18px 18px;
+    }
+
+    .pagination {
+        padding-bottom: 22px;
+    }
+}
+
+.login{
+    
+}
